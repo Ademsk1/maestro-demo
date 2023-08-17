@@ -1,0 +1,13 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: false
+- assertVisible: You need to log in
+- tapOn: Click here to open a link to log in (boring)
+- tapOn: Continue
+- tapOn: username
+- inputText: Adam
+- tapOn: password
+- inputText: '123'
+- tapOn: Log me in
+- assertVisible: QRScanner

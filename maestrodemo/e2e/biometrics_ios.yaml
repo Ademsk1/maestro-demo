@@ -1,0 +1,7 @@
+appId: org.reactjs.native.example.maestrodemo
+---
+- runScript:
+    file: './scripts/biometrics.js'
+    env:
+      process: ${PROCESS_TYPE}
+      phoneType: 'ios'

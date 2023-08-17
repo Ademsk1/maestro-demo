@@ -1,0 +1,15 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: false
+- assertVisible: You need to log in
+- runFlow:
+    file: biometrics.yaml
+    env:
+      PROCESS_TYPE: 'setup'
+- tapOn: ' Biometric Authentication (Very cool, not boring)'
+- assertVisible:
+- runFlow:
+    file: biometrics.yaml
+    env:
+      PROCESS_TYPE: 'pass'

@@ -1,0 +1,17 @@
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - runFlow:
+          file: biometrics_ios.yaml
+          env:
+            PROCESS_TYPE: ${PROCESS_TYPE}
+- runFlow:
+    when:
+      platform: Android
+
+    file: biometrics_android.yaml
+    env:
+      PROCESS_TYPE: ${PROCESS_TYPE}

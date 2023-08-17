@@ -1,0 +1,51 @@
+appId: com.maestrodemo
+---
+- runFlow:
+    when:
+      true: ${PROCESS_TYPE === 'setup';}
+    commands:
+      - runScript:
+          file: './scripts/biometrics.js'
+          env:
+            process: 'setup-pin'
+            phoneType: 'android'
+      - tapOn: Pixel Imprint
+      - inputText: '1111'
+      - pressKey: 'Enter'
+      - scrollUntilVisible:
+          element:
+            text: 'I AGREE'
+      - tapOn: 'I AGREE'
+      - runScript:
+          file: './scripts/biometrics.js'
+          env:
+            process: 'setup-fingerprint'
+            phoneType: 'android'
+      - assertVisible: 'Lift, then touch again'
+      - repeat:
+          times: 3
+          commands:
+            - runScript:
+                file: './scripts/biometrics.js'
+                env:
+                  process: 'setup-fingerprint'
+                  phoneType: 'android'
+- runFlow:
+    when:
+      true: ${PROCESS_TYPE === 'pass';}
+    commands:
+      - runScript:
+          file: './scripts/biometrics.js'
+          env:
+            process: 'pass'
+            phoneType: 'android'
+
+- runFlow:
+    when:
+      true: ${PROCESS_TYPE === 'fail';}
+    commands:
+      - runScript:
+          file: './scripts/biometrics.js'
+          env:
+            process: 'fail'
+            phoneType: 'android'
